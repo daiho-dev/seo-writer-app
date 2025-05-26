@@ -4,7 +4,7 @@ export const generateText = async (prompt: string, maxTokens: number = 500) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer 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"// ← APIキー
+        "Authorization": "Bearer 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"// ← APIキー
       },
       body: JSON.stringify({
         model: "mistralai/mistral-7b-instruct", //モデル名
