@@ -1,10 +1,20 @@
 export const generateText = async (prompt: string, maxTokens: number = 500) => {
   try {
-    const response = await fetch(
-      `https://free-gpt-api.dev/api/v1/chat?message=${encodeURIComponent(prompt)}`
-    );
+    const response = await fetch("https://api.vicgalle.net:443/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "user", content: prompt }],
+        max_tokens: maxTokens,
+        temperature: 0.7
+      })
+    });
+
     const data = await response.json();
-    return data?.reply || '回答が得られませんでした。';
+    return data?.choices?.[0]?.message?.content || '回答が得られませんでした。';
   } catch (error) {
     console.error('Error generating text:', error);
     return '申し訳ありません。テキスト生成中にエラーが発生しました。';
