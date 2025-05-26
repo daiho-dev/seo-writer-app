@@ -1,12 +1,13 @@
 export const generateText = async (prompt: string, maxTokens: number = 500) => {
   try {
-    const response = await fetch("https://api.vicgalle.net:443/chat/completions", {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": "Bearer YOUR_API_KEY"  // ← あなたのAPIキーをここに入れる
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
+        model: "mistral/mistral-7b-instruct", // または "openai/gpt-3.5-turbo"
         messages: [{ role: "user", content: prompt }],
         max_tokens: maxTokens,
         temperature: 0.7
