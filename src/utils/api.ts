@@ -2,8 +2,11 @@ import puter from "puter-js";
 
 export const generateText = async (prompt: string, maxTokens: number = 500) => {
   try {
-    const response = await puter.ai.chat(prompt);
-    return response || '回答が得られませんでした。';
+    const response = await fetch(
+      `https://free-gpt-api.dev/api/v1/chat?message=${encodeURIComponent(prompt)}`
+    );
+    const data = await response.json();
+    return data?.reply || '回答が得られませんでした。';
   } catch (error) {
     console.error('Error generating text:', error);
     return '申し訳ありません。テキスト生成中にエラーが発生しました。';
