@@ -1,5 +1,3 @@
-import puter from "puter-js";
-
 export const generateText = async (prompt: string, maxTokens: number = 500) => {
   try {
     const response = await fetch(
