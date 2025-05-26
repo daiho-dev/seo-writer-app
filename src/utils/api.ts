@@ -1,20 +1,9 @@
-import OpenAI from 'openai';
-
-const openai = new OpenAI({
-  apiKey: import.meta.env.VITE_TOGETHER_API_KEY,
-  baseURL: 'https://api.together.xyz/v1',
-});
+import puter from "puter-js";
 
 export const generateText = async (prompt: string, maxTokens: number = 500) => {
   try {
-    const response = await openai.chat.completions.create({
-      model: 'mistralai/Mixtral-8x7B-Instruct-v0.1',
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: maxTokens,
-      temperature: 0.7,
-    });
-
-    return response.choices[0]?.message?.content || '';
+    const response = await puter.ai.chat(prompt);
+    return response || '回答が得られませんでした。';
   } catch (error) {
     console.error('Error generating text:', error);
     return '申し訳ありません。テキスト生成中にエラーが発生しました。';
