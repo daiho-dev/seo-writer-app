@@ -4,7 +4,7 @@ export const generateText = async (prompt: string, maxTokens: number = 500) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer YOUR_API_KEY"  // ← あなたのAPIキーをここに入れる
+        "Authorization": "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"  // ← APIキー
       },
       body: JSON.stringify({
         model: "mistral/mistral-7b-instruct", // または "openai/gpt-3.5-turbo"
